@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-md-4 card p-4 shadow rounded-4 bg-white border-0">
+        <h3 class="fw-bold text-center text-dark mb-2">Sign In</h3>
+        <p class="text-muted text-center small mb-4">သင့်အကောင့်ဖြင့် ဝင်ရောက်ပါ</p>
+        
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label fw-bold text-secondary">Username</label>
+                <input type="text" name="username" class="form-control form-control-lg" placeholder="အမည်ရိုက်ထည့်ပါ" required>
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-bold text-secondary">Password</label>
+                <input type="password" name="password" class="form-control form-control-lg" placeholder="စကားဝှက်ရိုက်ထည့်ပါ" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold mb-3 shadow-sm">ဝင်ရောက်မည်</button>
+        </form>
+        
+        <hr class="text-muted">
+        
+        <div class="text-center mt-2">
+            <p class="text-secondary small mb-1">အကောင့်မရှိသေးဘူးလား ခင်ဗျာ?</p>
+            <a href="{{ url_for('register') }}" class="btn btn-outline-success btn-sm w-100 rounded-pill fw-bold py-2">
+                ✨ Create New Account
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

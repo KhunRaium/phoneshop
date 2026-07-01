@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">🛠️ Admin Dashboard</h2>
+    <a href="{{ url_for('admin_repairs') }}" class="btn btn-warning fw-bold">⚙️ ဖုန်းပြင်တောင်းဆိုမှုများ စီမံရန်</a>
+</div>
+
+<div class="row my-4">
+    <div class="col-md-4 mb-3">
+        <a href="{{ url_for('admin_users_list') }}" class="text-decoration-none">
+            <div class="card bg-primary text-white border-0 shadow-sm p-3 rounded-3" style="cursor: pointer; transition: 0.3s;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase small fw-bold text-white-50">စုစုပေါင်း User အကောင့်အရေအတွက်</h6>
+                        <h2 class="display-5 fw-bold mb-0">{{ total_users_amount }} ယောက်</h2>
+                        <small class="text-white-50">👇 နှိပ်ပြီး စာမျက်နှာအသစ်တွင်ကြည့်ရန်</small>
+                    </div>
+                    <div class="fs-1">👥</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <div class="col-md-4 mb-3">
+        <div class="card bg-success text-white border-0 shadow-sm p-3 rounded-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-uppercase small fw-bold text-white-50">တင်ထားသော ဖုန်းအမျိုးအမည်</h6>
+                    <h2 class="display-5 fw-bold mb-0">{{ total_phones_amount }} မျိုး</h2>
+                </div>
+                <div class="fs-1">📱</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4 mb-4 bg-white shadow-sm rounded-3">
+    <h4 class="fw-bold text-secondary mb-3">➕ ဖုန်းအသစ်နှင့် ဓာတ်ပုံထည့်ရန်</h4>
+    <form action="{{ url_for('admin_add_phone') }}" method="POST" enctype="multipart/form-data" class="row g-3">
+        <div class="col-md-3"><label class="small fw-bold">ဖုန်းအမည်</label><input type="text" name="name" class="form-control" required></div>
+        <div class="col-md-3"><label class="small fw-bold">အမျိုးအစား</label><input type="text" name="category" class="form-control" required></div>
+        <div class="col-md-2"><label class="small fw-bold">ဈေးနှုန်း</label><input type="number" name="price" class="form-control" required></div>
+        <div class="col-md-2"><label class="small fw-bold">အရေအတွက် (Stock)</label><input type="number" name="stock" class="form-control" required></div>
+        <div class="col-md-2"><label class="small fw-bold">ဖုန်းဓာတ်ပုံ</label><input type="file" name="phone_image" class="form-control" required></div>
+        <div class="col-12"><button type="submit" class="btn btn-primary fw-bold">ထုတ်ကုန်အသစ် တင်မည်</button></div>
+    </form>
+</div>
+
+<h4 class="fw-bold text-secondary mb-3">📦 လက်ရှိ ရောင်းချနေသော ပစ္စည်းစာရင်း</h4>
+<table class="table table-hover bg-white border shadow-sm rounded-3 overflow-hidden">
+    <thead class="table-dark">
+        <tr>
+            <th>ပုံ</th>
+            <th>အမည်</th>
+            <th>အမျိုးအစား</th>
+            <th>ဈေးနှုန်း</th>
+            <th>အရေအတွက်</th>
+            <th>အခြေအနေ</th>
+            <th>လုပ်ဆောင်ချက်</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for phone in phones %}
+        <tr class="align-middle">
+            <td><img src="{{ url_for('static', filename='uploads/' + phone.image_file) }}" style="width: 50px; height: 50px; object-fit: cover;" class="rounded border"></td>
+            <td class="fw-bold">{{ phone.name }}</td>
+            <td>{{ phone.category }}</td>
+            <td>{{ phone.price }} MMK</td>
+            <td>{{ phone.stock }}</td>
+            <td><span class="badge {% if phone.status == 'Available' %}bg-success{% else %}bg-danger{% endif %}">{{ phone.status }}</span></td>
+            <td>
+                <a href="{{ url_for('admin_edit_phone', phone_id=phone.id) }}" class="btn btn-sm btn-info text-white fw-bold">Edit/Update</a>
+                <a href="{{ url_for('admin_delete_phone', phone_id=phone.id) }}" class="btn btn-sm btn-danger fw-bold" onclick="return confirm('ဖျက်ရန် သေချာပါသလား?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="fw-bold mb-4">ဖုန်းပြင်တောင်းဆိုမှုများ စီမံရန်</h2>
+{% for r in repairs %}
+<div class="card p-3 mb-3 bg-white shadow-sm rounded-3">
+    <h5><b>ဖုန်းမော်ဒယ်:</b> {{ r.phone_model }} (User ID: {{ r.user_id }})</h5>
+    <p class="mb-1"><b>ပျက်စီးရသည့်အကြောင်းရင်း:</b> {{ r.issue_description }}</p>
+    <p>အခြေအနေ: <b class="text-info">{{ r.status }}</b></p>
+    <form method="POST" class="row g-2 mt-2">
+        <input type="hidden" name="repair_id" value="{{ r.id }}">
+        <div class="col-md-4"><input type="number" name="cost" class="form-control" placeholder="ပြင်ဆင်ခ ကျသင့်ငွေ (MMK)" required></div>
+        <div class="col-md-4"><input type="number" name="days" class="form-control" placeholder="ကြာမြင့်မည့်ရက် (Days)" required></div>
+        <div class="col-md-4"><button type="submit" class="btn btn-warning w-100 fw-bold">ဈေးနှုန်းနှင့်ရက်တွက် Reply ပြန်မည်</button></div>
+    </form>
+</div>
+{% endfor %}
+{% endblock %}

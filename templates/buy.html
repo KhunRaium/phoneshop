@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center my-5">
+    <div class="col-md-6 card p-4 shadow rounded-4">
+        <h3 class="fw-bold text-success text-center">💳 ငွေပေးချေမှုစနစ်</h3>
+        <h4 class="mt-3 fw-bold">{{ phone.name }}</h4>
+        <p class="text-danger h4 font-weight-bold">{{ phone.price }} MMK</p>
+        <hr>
+        <form method="POST">
+            <div class="mb-3">
+                <label class="form-label fw-bold">ငွေပေးချေမှုစနစ် ရွေးချယ်ပါ</label>
+                <select name="payment_method" class="form-select" required>
+                    <option value="Kpay">KBZPay (09123456789)</option>
+                    <option value="WavePay">WavePay (09987654321)</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="form-label fw-bold">သင်၏ Kpay / WavePay ဖုန်းနံပါတ်</label>
+                <input type="text" name="payment_phone" class="form-control" placeholder="09xxxxxxxxx" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100 py-2 fw-bold">✅ ငွေလွှဲပြီးပြီ ဝယ်ယူမှုကို အတည်ပြုမည်</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

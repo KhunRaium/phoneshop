@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-dark">👥 Customer များ၏ အချက်အလက်များနှင့် ပမာဏ</h2>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary fw-bold">⬅️ Dashboard သို့ပြန်သွားရန်</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover bg-white border shadow-sm rounded-3 overflow-hidden">
+        <thead class="table-dark">
+            <tr>
+                <th>Customer Profile & အမည်</th>
+                <th>ဖုန်းနံပါတ်</th>
+                <th>နေရပ်လိပ်စာအပြည့်အစုံ</th>
+                <th class="text-center">ဝယ်ယူမှုအရေအတွက်</th>
+                <th class="text-center">ဖုန်းပြင်ဆင်မှုတောင်းဆိုချက်</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr class="align-middle">
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="{{ url_for('static', filename='uploads/' + user.profile_pic) }}" style="width: 45px; height: 45px; object-fit: cover;" class="rounded-circle border me-2">
+                        <span class="fw-bold text-dark">{{ user.username }}</span>
+                    </div>
+                </td>
+                <td><a href="tel:{{ user.phone_number }}" class="text-decoration-none">{{ user.phone_number }}</a></td>
+                <td>{{ user.address }}</td>
+                <td class="text-center"><span class="badge bg-success fs-6">{{ user.orders|length }} လုံး</span></td>
+                <td class="text-center"><span class="badge bg-info text-dark fs-6">{{ user.repairs|length }} ကြိမ်</span></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center text-muted py-3">လက်ရှိတွင် Customer အကောင့်များ မရှိသေးပါ။</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

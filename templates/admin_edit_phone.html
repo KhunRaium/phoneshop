@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 card p-4 shadow rounded-3">
+        <h3 class="fw-bold">ဖုန်းအချက်အလက် ပြင်ဆင်ရန်</h3>
+        <form method="POST" enctype="multipart/form-data" class="mt-3">
+            <div class="mb-3"><label>ဖုန်းအမည်</label><input type="text" name="name" value="{{ phone.name }}" class="form-control"></div>
+            <div class="mb-3"><label>အမျိုးအစား</label><input type="text" name="category" value="{{ phone.category }}" class="form-control"></div>
+            <div class="mb-3"><label>ဈေးနှုန်း (MMK)</label><input type="number" name="price" value="{{ phone.price }}" class="form-control"></div>
+            <div class="mb-3"><label>အရေအတွက် (Stock)</label><input type="number" name="stock" value="{{ phone.stock }}" class="form-control"></div>
+            <div class="mb-3"><label>ပုံအသစ်လဲရန် (Optional)</label><input type="file" name="phone_image" class="form-control"></div>
+            <button type="submit" class="btn btn-success w-100 fw-bold">Update လုပ်မည်</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

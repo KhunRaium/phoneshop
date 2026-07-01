@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 card p-4 shadow rounded-3">
+        <h3 class="fw-bold">🔧 ဖုန်းပြင်ဆင်ရန် Form</h3>
+        <form method="POST" class="mt-3">
+            <div class="mb-3"><label class="fw-bold">ဖုန်းမော်ဒယ်</label><input type="text" name="phone_model" class="form-control" placeholder="ဥပမာ - iPhone 13 Pro" required></div>
+            <div class="mb-3"><label class="fw-bold">ဘာကြောင့်ပျက်ရသလဲ (အသေးစိတ်)</label><textarea name="issue" class="form-control" rows="4" required></textarea></div>
+            <button type="submit" class="btn btn-info text-white w-100 fw-bold">Form တင်မည်</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
